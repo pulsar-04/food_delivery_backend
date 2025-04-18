@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'rest_framework',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'food_delivery_web.urls'
+
+AUTH_USER_MODEL = 'core.User'
+# food_delivery_web/settings.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
 
 TEMPLATES = [
     {
@@ -76,10 +89,15 @@ WSGI_APPLICATION = 'food_delivery_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'food_delivery_web_project_db',
+        'USER': 'postgres',
+        'PASSWORD': 'databasepass',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
